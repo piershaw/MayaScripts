@@ -13,7 +13,7 @@ import maya.mel as mel
 import os
 
 fileTextures = cmds.ls(typ="file")
-yourPathToTextures = "\Volumes\untitled"
+yourPathToTextures = "/Volumes/untitled"
 yourMainDrive = "C:/"
 
 def findPath():
@@ -21,11 +21,10 @@ def findPath():
         path = cmds.getAttr("%s.fileTextureName" % (textrue))
         result = os.path.exists(path)
         print("tex " + str(result))
-        if textrue == True:
+        if result == True:
             print("queryPath " + str(path))
             splitPath = str(path).replace(yourPathToTextures,yourMainDrive)
             print("splitPath " + splitPath)
-
-    cmds.setAttr("%s.fileTextureName" % (textrue), splitPath, type="string")
+            cmds.setAttr("%s.fileTextureName" % (textrue), splitPath, type="string")
 
 findPath()
